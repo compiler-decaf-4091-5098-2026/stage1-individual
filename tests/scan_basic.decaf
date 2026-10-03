@@ -1,0 +1,5 @@
+print("Hello, World!");
+42 42L 0x1F 0x1FL
+true false 'a' '\n'
+int long bool if while
+a[0] = 1;
