@@ -1,0 +1,32 @@
+import foo;
+
+int a[10];
+
+void f(int x, long y, bool z) {
+    x = y;
+}
+
+int g(int p) {
+    return p;
+}
+
+void main() {
+    int i;
+    bool b;
+    i = len(a);
+    i = foo(g(i), foo(foo(1), 2));
+    i = a[i] + b * i - g(i) / 2 % 3;
+    b = i < 10 && i > 0 || b;
+    i = (i);
+    i = - - i;
+    b = ! ! b;
+    f(i, 2, true);
+    i = int(long(i));
+    while (i < 5) {
+        i = i + 1;
+    }
+    for (i = 0; i < 10; i--) {
+        i = i + 1;
+    }
+    return;
+}
