@@ -1,0 +1,50 @@
+if(NOT DEFINED EXE OR NOT DEFINED PHASE OR NOT DEFINED FILE)
+    message(FATAL_ERROR "run_test.cmake: EXE, PHASE and FILE must all be defined")
+endif()
+
+execute_process(
+    COMMAND "${EXE}" -t "${PHASE}" "${FILE}"
+    RESULT_VARIABLE result
+    OUTPUT_VARIABLE out
+    ERROR_VARIABLE err
+)
+
+string(REPLACE "\r\n" "\n" out_norm "${out}")
+string(REPLACE "\r\n" "\n" err_norm "${err}")
+
+string(REGEX REPLACE "[ \t\n]+$" "" out_trimmed "${out_norm}")
+string(REGEX REPLACE "[ \t\n]+$" "" err_trimmed "${err_norm}")
+
+if(EXPECT_FAIL)
+    if(result EQUAL 0)
+        message(FATAL_ERROR "expected the compiler to fail but it exited with 0\nstdout:\n${out_trimmed}")
+    endif()
+    if(NOT out_trimmed STREQUAL "")
+        message(FATAL_ERROR "expected no stdout on failure but got:\n${out_trimmed}")
+    endif()
+    if(err_trimmed STREQUAL "")
+        message(FATAL_ERROR "expected an error message on stderr but stderr was empty")
+    endif()
+    message(STATUS "PASS: compiler correctly failed with exit code ${result}")
+else()
+    if(NOT result EQUAL 0)
+        message(FATAL_ERROR "expected exit code 0 but got ${result}\nstderr:\n${err_trimmed}")
+    endif()
+    if(NOT err_trimmed STREQUAL "")
+        message(FATAL_ERROR "expected no stderr output but got:\n${err_trimmed}")
+    endif()
+    if(DEFINED EXPECTED)
+        file(READ "${EXPECTED}" expected_raw)
+        string(REPLACE "\r\n" "\n" expected_norm "${expected_raw}")
+        string(REGEX REPLACE "[ \t\n]+$" "" expected_trimmed "${expected_norm}")
+        if(NOT out_trimmed STREQUAL expected_trimmed)
+            message(FATAL_ERROR "scan output mismatch for ${FILE}\n--- expected ---\n${expected_trimmed}\n--- actual ---\n${out_trimmed}")
+        endif()
+        message(STATUS "PASS: exit 0, stdout matches ${EXPECTED}")
+    else()
+        if(NOT out_trimmed STREQUAL "")
+            message(FATAL_ERROR "expected no stdout output but got:\n${out_trimmed}")
+        endif()
+        message(STATUS "PASS: exit 0, no output")
+    endif()
+endif()
