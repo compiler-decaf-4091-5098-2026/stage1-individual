@@ -1,2 +1,5 @@
 build
 run.bat
+.clang-format
+1.decaf
+/theory
