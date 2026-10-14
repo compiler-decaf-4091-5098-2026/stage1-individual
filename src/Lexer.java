@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// Выполняет лексический анализ исходного текста языка Decaf.
+
 public class Lexer {
     private final String source;
     private final String fileName;
@@ -37,6 +39,8 @@ public class Lexer {
         keywords.put("while", TokenType.WHILE);
     }
 
+    // Формирует список токенов из исходного текста программы.
+
     public List<Token> scanTokens() {
         while (!isAtEnd()) {
             start = current;
@@ -48,9 +52,12 @@ public class Lexer {
         return tokens;
     }
 
-    public List<CompilerError> getErrors() {
-        return errors;
-    }
+    // Возвращает список обнаруженных лексических ошибок.
+
+    public List<CompilerError> getErrors() { return errors; }
+
+
+    // Определяет тип очередного токена по текущему символу.
 
     private void scanToken() {
         char c = advance();
@@ -151,6 +158,8 @@ public class Lexer {
         }
     }
 
+    // Распознаёт идентификаторы, ключевые слова и логические значения.
+
     private void scanIdentifier() {
         while (isAlphaNumeric(peek()))
             advance();
@@ -166,6 +175,8 @@ public class Lexer {
             type = TokenType.IDENTIFIER;
         addToken(type);
     }
+
+    // Распознаёт десятичные и шестнадцатеричные числовые литералы.
 
     private void scanNumber() {
         if (source.charAt(start) == '0' && peek() == 'x') {
@@ -187,6 +198,8 @@ public class Lexer {
         } else
             addToken(TokenType.INT_LITERAL);
     }
+
+    // Проверяет строковые литералы и допустимые escape-последовательности.
 
     private void scanStringLiteral() {
         boolean valid = true;
@@ -226,6 +239,8 @@ public class Lexer {
         if (valid)
             addToken(TokenType.STRING_LITERAL);
     }
+
+    // Проверяет правильность записи символьных литералов.
 
     private void scanCharLiteral() {
         boolean valid = true;
@@ -283,10 +298,15 @@ public class Lexer {
             addToken(TokenType.CHAR_LITERAL);
     }
 
+
+    // Пропускает однострочные комментарии до конца строки.
+
     private void skipLineComment() {
         while (!isAtEnd() && peek() != '\n' && peek() != '\r')
             advance();
     }
+
+    // Пропускает многострочные комментарии и проверяет их закрытие.
 
     private void skipBlockComment() {
         int commentLine = startLine;
@@ -304,12 +324,16 @@ public class Lexer {
         addError(commentLine, commentColumn, "Незакрытый многострочный комментарий");
     }
 
+
     private boolean isValidEscape(char c) { return c == '"' || c == '\'' || c == '\\' || c == 't' || c == 'n' || c == 'r' || c == 'f'; }
     private boolean isValidLiteralChar(char c) { return c >= 32 && c <= 126 && c != '"' && c != '\'' && c != '\\'; }
     private boolean isAlpha(char c) { return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c == '_'; }
     private boolean isAlphaNumeric(char c) { return isAlpha(c) || isDigit(c); }
     private boolean isDigit(char c) { return c >= '0' && c <= '9'; }
     private boolean isHexDigit(char c) { return isDigit(c) || c >= 'a' && c <= 'f' || c >= 'A' && c <= 'F'; }
+
+
+    // Считывает следующий символ и обновляет номер строки и столбца.
 
     private char advance() {
         char c = source.charAt(current);
@@ -357,11 +381,16 @@ public class Lexer {
         return current >= source.length();
     }
 
+
+    // Добавляет распознанный токен с его текстом и положением.
+
     private void addToken(TokenType type) {
         String text = source.substring(start, current);
         Token token = new Token(type, text, startLine, startColumn);
         tokens.add(token);
     }
+
+    // Сохраняет сообщение о лексической ошибке и её положении.
 
     private void addError(int errorLine, int errorColumn, String message) {
         CompilerError error = new CompilerError(fileName, errorLine, errorColumn, message);

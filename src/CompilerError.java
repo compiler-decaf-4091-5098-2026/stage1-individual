@@ -1,3 +1,5 @@
+// Хранит информацию об ошибке: файл, строку, столбец и сообщение.
+
 public class CompilerError {
     private final String fileName;
     private final int line;

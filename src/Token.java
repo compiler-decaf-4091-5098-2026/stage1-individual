@@ -1,3 +1,5 @@
+// Хранит тип, текст и положение токена в исходном файле.
+
 public class Token {
     private final TokenType type;
     private final String text;

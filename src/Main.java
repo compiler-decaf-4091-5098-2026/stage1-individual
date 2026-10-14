@@ -3,6 +3,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+// Главный класс программы, отвечающий за запуск компилятора.
+
 public class Main {
     public static void main(String[] args) {
         String target = "parse";
@@ -44,9 +46,8 @@ public class Main {
         // Чтение исходного файла.
 
         String source;
-        try {
-            source = Files.readString(Path.of(fileName));
-        } catch (IOException e) {
+        try { source = Files.readString(Path.of(fileName)); }
+        catch (IOException e) {
             fail("Не удалось прочитать файл: " + fileName);
             return;
         }
@@ -73,9 +74,8 @@ public class Main {
                 if (token.getType() != TokenType.EOF)
                     result.append(formatToken(token)).append('\n');
             }
-            if (outputName == null) {
-                System.out.print(result);
-            } else {
+            if (outputName == null) { System.out.print(result); }
+            else {
                 try { Files.writeString(Path.of(outputName), result.toString()); }
                 catch (IOException e) { fail("Не удалось записать файл: " + outputName); }
             }
@@ -93,12 +93,16 @@ public class Main {
     }
 
 
+    // Формирует строку для вывода распознанного токена.
+
     private static String formatToken(Token token) {
         String type = getDisplayType(token.getType());
         if (type == null)
             return token.getLine() + " " + token.getText();
         return token.getLine() + " " + type + " " + token.getText();
     }
+
+    // Определяет название типа токена для вывода на экран.
 
     private static String getDisplayType(TokenType type) {
         switch (type) {
@@ -111,6 +115,9 @@ public class Main {
             default: return null;
         }
     }
+
+
+    // Выводит сообщение об ошибке и завершает программу с кодом 1.
 
     private static void fail(String message) {
         System.err.println(message);

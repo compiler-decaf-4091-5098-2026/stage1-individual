@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// Выполняет синтаксический анализ Decaf методом рекурсивного спуска.
+
 public class Parser {
     private final List<Token> tokens;
     private final String fileName;
@@ -13,6 +15,8 @@ public class Parser {
         this.fileName = fileName;
     }
 
+    // Запускает синтаксический разбор и определяет его результат.
+
     public boolean parse() {
         try {
             program();
@@ -22,9 +26,12 @@ public class Parser {
         return true;
     }
 
-    public List<CompilerError> getErrors() {
-        return errors;
-    }
+    // Возвращает список обнаруженных синтаксических ошибок.
+
+    public List<CompilerError> getErrors() { return errors; }
+
+
+    // Разбирает структуру программы: импорты, переменные и методы.
 
     private void program() {
         while (match(TokenType.IMPORT))
@@ -37,10 +44,14 @@ public class Parser {
         consume(TokenType.EOF, "Ожидался конец файла");
     }
 
+    // Разбирает объявление импортируемого метода.
+
     private void importDeclaration() {
         consume(TokenType.IDENTIFIER, "Ожидалось имя импортируемого метода");
         consume(TokenType.SEMICOLON, "Ожидался символ ';'");
     }
+
+    // Разбирает объявление переменных и массивов.
 
     private void fieldDeclaration() {
         parseType();
@@ -50,6 +61,8 @@ public class Parser {
         consume(TokenType.SEMICOLON, "Ожидался символ ';'");
     }
 
+    // Проверяет имя переменной и необязательный размер массива.
+
     private void field() {
         consume(TokenType.IDENTIFIER, "Ожидалось имя переменной");
         if (match(TokenType.LEFT_BRACKET)) {
@@ -57,6 +70,8 @@ public class Parser {
             consume(TokenType.RIGHT_BRACKET, "Ожидался символ ']'");
         }
     }
+
+    // Разбирает объявление метода: тип, имя, параметры и тело.
 
     private void methodDeclaration() {
         if (!match(TokenType.VOID))
@@ -75,10 +90,14 @@ public class Parser {
         block();
     }
 
+    // Проверяет тип и имя параметра метода.
+
     private void parameter() {
         parseType();
         consume(TokenType.IDENTIFIER, "Ожидалось имя параметра");
     }
+
+    // Разбирает блок с локальными переменными и операторами.
 
     private void block() {
         consume(TokenType.LEFT_BRACE, "Ожидался символ '{'");
@@ -90,6 +109,8 @@ public class Parser {
 
         consume(TokenType.RIGHT_BRACE, "Ожидался символ '}'");
     }
+
+    // Определяет вид оператора и запускает соответствующий разбор.
 
     private void statement() {
         if (match(TokenType.IF)) {
@@ -132,6 +153,8 @@ public class Parser {
         throw error(peek(), "Ожидался оператор");
     }
 
+    // Разбирает условный оператор if и необязательную ветку else.
+
     private void ifStatement() {
         consume(TokenType.LEFT_PAREN, "Ожидался символ '('");
         expression();
@@ -140,6 +163,8 @@ public class Parser {
         if (match(TokenType.ELSE))
             block();
     }
+
+    // Разбирает цикл for: начальное присваивание, условие, изменение и тело.
 
     private void forStatement() {
         consume(TokenType.LEFT_PAREN, "Ожидался символ '('");
@@ -155,6 +180,8 @@ public class Parser {
         block();
     }
 
+    // Разбирает цикл while с условием и телом.
+
     private void whileStatement() {
         consume(TokenType.LEFT_PAREN, "Ожидался символ '('");
         expression();
@@ -162,12 +189,16 @@ public class Parser {
         block();
     }
 
+    // Разбирает оператор return с необязательным выражением.
+
     private void returnStatement() {
         if (!check(TokenType.SEMICOLON))
             expression();
 
         consume(TokenType.SEMICOLON, "Ожидался символ ';'");
     }
+
+    // Проверяет операторы присваивания, увеличения и уменьшения.
 
     private void assignExpression() {
         if (match(TokenType.ASSIGN) || match(TokenType.PLUS_ASSIGN) || match(TokenType.MINUS_ASSIGN) || match(TokenType.MULTIPLY_ASSIGN) || match(TokenType.DIVIDE_ASSIGN) || match(TokenType.MODULO_ASSIGN)) {
@@ -179,6 +210,8 @@ public class Parser {
 
         throw error(peek(), "Ожидался оператор присваивания");
     }
+
+    // Разбирает вызов метода и передаваемые аргументы.
 
     private void methodCall() {
         consume(TokenType.IDENTIFIER, "Ожидалось имя метода");
@@ -193,11 +226,15 @@ public class Parser {
         consume(TokenType.RIGHT_PAREN, "Ожидался символ ')'");
     }
 
+    // Разбирает аргумент вызова метода.
+
     private void argument() {
         if (match(TokenType.STRING_LITERAL))
             return;
         expression();
     }
+
+    // Разбирает обращение к переменной или элементу массива.
 
     private void location() {
         consume(TokenType.IDENTIFIER, "Ожидался идентификатор");
@@ -206,6 +243,9 @@ public class Parser {
             consume(TokenType.RIGHT_BRACKET, "Ожидался символ ']'");
         }
     }
+
+
+    // Запускает разбор выражения с учётом приоритета операций.
 
     private void expression() {
         orExpression();
@@ -220,7 +260,6 @@ public class Parser {
         while (match(TokenType.AND))
             equalityExpression();
     }
-
     private void equalityExpression() {
         relationalExpression();
         while (match(TokenType.EQUAL) || match(TokenType.NOT_EQUAL))
@@ -241,6 +280,9 @@ public class Parser {
         while (match(TokenType.MULTIPLY) || match(TokenType.DIVIDE) || match(TokenType.MODULO))
             unaryExpression();
     }
+
+    // Разбирает унарные операции, приведение типов и функцию len.
+
     private void unaryExpression() {
         if (match(TokenType.MINUS) || match(TokenType.NOT)) {
             unaryExpression();
@@ -263,6 +305,9 @@ public class Parser {
 
         primaryExpression();
     }
+
+    // Разбирает литералы, переменные, вызовы методов и выражения в скобках.
+
     private void primaryExpression() {
         if (match(TokenType.INT_LITERAL) || match(TokenType.LONG_LITERAL) || match(TokenType.CHAR_LITERAL) || match(TokenType.BOOLEAN_LITERAL))
             return;
@@ -283,6 +328,9 @@ public class Parser {
         throw error(peek(), "Ожидалось выражение");
     }
 
+
+    // Проверяет допустимые типы данных: int, long и bool.
+
     private void parseType() {
         if (match(TokenType.INT) || match(TokenType.LONG) || match(TokenType.BOOL))
             return;
@@ -291,13 +339,14 @@ public class Parser {
 
     private boolean isType(TokenType type) { return type == TokenType.INT || type == TokenType.LONG || type == TokenType.BOOL; }
     private boolean isMethodDeclaration() { return isType(peek().getType()) && checkAt(1, TokenType.IDENTIFIER) && checkAt(2, TokenType.LEFT_PAREN); }
-
     private boolean match(TokenType type) {
         if (!check(type))
             return false;
         advance();
         return true;
     }
+
+    // Проверяет ожидаемый токен и сообщает об ошибке при несовпадении.
 
     private Token consume(TokenType type, String message) {
         if (check(type))
@@ -307,7 +356,6 @@ public class Parser {
 
     private boolean check(TokenType type) { return peek().getType() == type; }
     private boolean checkNext(TokenType type) { return checkAt(1, type); }
-
     private boolean checkAt(int offset, TokenType type) {
         int index = current + offset;
         if (index >= tokens.size())
@@ -324,6 +372,9 @@ public class Parser {
 
     private Token peek() { return tokens.get(current); }
     private boolean isAtEnd() { return peek().getType() == TokenType.EOF; }
+
+
+    // Сохраняет синтаксическую ошибку с указанием строки и столбца.
 
     private ParseException error(Token token, String message) {
         errors.add(new CompilerError(fileName, token.getLine(), token.getColumn(), message));
