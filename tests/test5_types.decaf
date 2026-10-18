@@ -1,0 +1,13 @@
+extern void print(string msg);
+
+int main() {
+    boolean isDone = false;
+    char letter = 'A';
+    long bigNumber = 1000000L;
+
+    if (isDone == false) {
+        letter = 'B';
+    }
+
+    return 0;
+}
