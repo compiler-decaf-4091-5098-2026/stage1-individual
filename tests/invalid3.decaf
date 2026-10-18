@@ -1,0 +1,7 @@
+void main() {
+    int a = @;   
+    int b = 0xZZ;   
+    string s = "Hello; 
+    char c = 'ab'; 
+    /* незакрытый комментарий
+}

@@ -1,0 +1,17 @@
+void main() {
+    int a;
+    long b;
+    bool c;
+    
+    a = 5;
+    b = 10L;
+    c = true;
+    
+    a = int(b) + 2;
+    b = long(a) * 3L;
+    c = (a > 2) && (b != 0);
+    
+    if (!c) {
+        a = a + 1;
+    }
+}

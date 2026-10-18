@@ -1,0 +1,21 @@
+void main() {
+    int[] arr;
+    int i;
+    bool flag;
+    
+    i = 0;
+    flag = true;
+    
+    for (i = 0; i < 10; i++) {
+        arr[i] = i * 2;
+        if (arr[i] == 4) {
+            break;
+        } else {
+            continue;
+        }
+    }
+    
+    while (i > 0) {
+        i = i - 1;
+    }
+}
