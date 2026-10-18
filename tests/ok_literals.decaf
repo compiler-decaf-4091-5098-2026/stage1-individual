@@ -1,0 +1,4 @@
+void main() {
+    int a = 0xFF;
+    long b = 123L;
+}
