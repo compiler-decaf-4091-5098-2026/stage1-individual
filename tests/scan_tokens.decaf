@@ -1,0 +1,6 @@
+int myVar;
+bool flag;
+
+void main() {
+    myVar = 10;
+}
