@@ -1,0 +1,16 @@
+{
+  "name": "decaf-stage1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Этап 1 компилятора Decaf: сканер и синтаксический анализатор",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "scan": "node dist/index.js -t scan",
+    "parse": "node dist/index.js -t parse"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

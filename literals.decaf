@@ -1,0 +1,14 @@
+
+int main() {
+    int a;
+    long b;
+    bool c;
+
+    a = 123;
+    b = 123L;
+    a = 0x2A;
+    c = true;
+    c = false;
+
+    return 0;
+}
