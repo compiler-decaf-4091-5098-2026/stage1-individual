@@ -1,0 +1,5 @@
+void main() {
+    int x, y;
+    long total;
+    bool ready;
+}

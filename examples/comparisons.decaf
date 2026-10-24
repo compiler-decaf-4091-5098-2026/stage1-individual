@@ -1,0 +1,11 @@
+void main() {
+    int x, y;
+    bool ready;
+
+    x = 10;
+    y = 20;
+    ready = x + 1 < y * 2;
+    ready = x == y;
+    ready = true;
+    ready = false;
+}
