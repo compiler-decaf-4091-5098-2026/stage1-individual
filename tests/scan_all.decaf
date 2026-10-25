@@ -1,0 +1,20 @@
+import print;
+
+int x = 123;
+long y = 0x12AFL;
+bool flag = true;
+
+x += 5;
+x--;
+y *= 2L;
+
+if (x >= 10 && flag != false) {
+    print("Hello\n");
+}
+
+x = x + 1;
+
+// Проверка строчного комментария
+
+/* Проверка блочного
+   комментария */

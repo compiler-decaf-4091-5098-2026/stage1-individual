@@ -1,0 +1,24 @@
+import print;
+
+int numbers[5];
+
+int square(int x) {
+    return x * x;
+}
+
+void main() {
+    int i;
+    long sum;
+    sum = 0L;
+
+    forf (i = 0; i < len(numbers); i++) {
+        numbers[i] = square(i);
+        sum += long(numbers[i]);
+    }
+
+    if (sum > 0L) {
+        print("Done\n");
+    } else {
+        print("Empty\n");
+    }
+}

@@ -1,0 +1,24 @@
+import print;
+
+int values[10];
+long total;
+bool ready;
+
+void main() {
+    int i;
+    i = 0;
+    total = 0L;
+    ready = true;
+
+    for (i = 0; i < 10; i++) {
+        values[i] = i * 2;
+    }
+
+    if (ready && total <= 10L) {
+        print("Hello\n");
+    } else {
+        while (i > 0) {
+            i--;
+        }
+    }
+}
