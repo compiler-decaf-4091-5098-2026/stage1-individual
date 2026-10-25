@@ -11,7 +11,7 @@ void main() {
     long sum;
     sum = 0L;
 
-    forf (i = 0; i < len(numbers); i++) {
+    for (i = 0; i < len(numbers); i++) {
         numbers[i] = square(i);
         sum += long(numbers[i]);
     }
