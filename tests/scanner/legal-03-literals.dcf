@@ -1,0 +1,2 @@
+'a' ' ' '\'' '\"' '\\' '\t' '\n' '\r' '\f' '~'
+"" "hello, world" "tab\there" "quote \" inside" "backslash \\"

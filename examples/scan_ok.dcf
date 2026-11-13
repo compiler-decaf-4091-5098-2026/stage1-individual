@@ -1,0 +1,6 @@
+import printf;
+void main() {
+  long x;
+  x = 0x2AL + 7L;
+  printf("x = %d\n", 'a');
+}

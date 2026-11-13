@@ -1,0 +1,44 @@
+1 +
+1 -
+1 *
+1 /
+1 %
+1 <
+1 >
+1 <=
+1 >=
+1 ==
+1 !=
+1 &&
+1 ||
+1 !
+1 =
+1 +=
+1 -=
+1 *=
+1 /=
+1 %=
+1 ++
+1 --
+2 (
+2 )
+2 [
+2 ]
+2 {
+2 }
+2 ;
+2 ,
+3 IDENTIFIER a
+3 ++
+3 +
+3 IDENTIFIER b
+3 IDENTIFIER a
+3 <=
+3 -
+3 IDENTIFIER b
+3 !
+3 !
+3 IDENTIFIER c
+3 IDENTIFIER x
+3 ==
+3 IDENTIFIER y

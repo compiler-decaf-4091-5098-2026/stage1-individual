@@ -1,0 +1,8 @@
+1 int
+1 IDENTIFIER a
+1 IDENTIFIER b
+1 ;
+2 int
+2 IDENTIFIER c
+2 IDENTIFIER d
+2 ;

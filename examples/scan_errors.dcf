@@ -1,0 +1,6 @@
+void main() {
+  int x;
+  x = '\q' + 1;
+  x = x # 2;
+  printf("not closed);
+}

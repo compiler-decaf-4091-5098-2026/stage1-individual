@@ -1,0 +1,14 @@
+int add(int a, int b) {
+  return a + b;
+}
+long widen(int x) {
+  return long(x);
+}
+bool isZero(long v) {
+  return v == 0L;
+}
+void main() {
+  int r;
+  r = add(1, 2);
+  add(3, 4);
+}

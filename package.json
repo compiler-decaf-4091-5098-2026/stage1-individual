@@ -1,0 +1,15 @@
+{
+  "name": "decaf-compiler",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Компилятор языка Decaf, этап 1: лексический и синтаксический анализ",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "sh tests/run_tests.sh"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "5.9.3"
+  }
+}

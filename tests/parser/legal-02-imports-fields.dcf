@@ -1,0 +1,7 @@
+import printf;
+import exit;
+int a, b[10], c;
+long big[0x20];
+bool flag;
+void main() {
+}

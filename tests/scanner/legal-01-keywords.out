@@ -1,0 +1,22 @@
+1 if
+1 bool
+1 break
+1 import
+1 continue
+1 else
+1 BOOLEANLITERAL false
+1 for
+1 while
+2 int
+2 long
+2 return
+2 len
+2 BOOLEANLITERAL true
+2 void
+3 IDENTIFIER IF
+3 IDENTIFIER Int
+3 IDENTIFIER intfortrue
+3 IDENTIFIER _x
+3 IDENTIFIER x1
+3 IDENTIFIER foo
+3 IDENTIFIER Foo

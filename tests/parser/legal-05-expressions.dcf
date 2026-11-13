@@ -1,0 +1,17 @@
+int f(int x) {
+  return x;
+}
+void main() {
+  int x, y;
+  long z;
+  bool b;
+  x = -1 + 2 * 3 - 4 / 5 % 6;
+  b = x < y && y <= x || x >= y && x > y;
+  b = x == y != false;
+  b = !(x != y) && !!b;
+  z = long(x) + long(f(y)) * 3L;
+  x = int(z) - -x;
+  x = 'a' + '\n';
+  x = f(f(f(0x1F)));
+  x = ((((x))));
+}
