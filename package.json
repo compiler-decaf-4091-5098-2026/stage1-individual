@@ -1,0 +1,1 @@
+{"name":"decaf-stage1-varfolomeeva","version":"1.0.0","private":true,"description":"Этап 1 компилятора Decaf","scripts":{"build":"tsc","start":"node dist/index.js","scan":"node dist/index.js -t scan","parse":"node dist/index.js -t parse"},"devDependencies":{"@types/node":"^22.0.0","typescript":"^5.9.3"}}
