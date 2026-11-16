@@ -15,7 +15,6 @@ public class DecafCompiler {
         System.exit(run(args, System.out, System.err));
     }
 
-    // Returning a status makes the same entry point usable in automated tests.
     public static int run(String[] args, PrintStream out, PrintStream err) {
         CommandLine options;
         try {
@@ -58,7 +57,6 @@ public class DecafCompiler {
                         ? tree.toStringTree(parser) + System.lineSeparator() : "";
             }
 
-            // No partial output is written when lexing or parsing fails.
             if (options.output() != null) {
                 Files.writeString(options.output(), result, StandardCharsets.UTF_8);
             } else {

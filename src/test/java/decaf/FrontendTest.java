@@ -130,7 +130,7 @@ class FrontendTest {
 
     @Test
     void scannerDoesNotParseAndCanWriteToFile() throws Exception {
-        Path input = source("int"); // A valid token, but not a complete declaration.
+        Path input = source("int");
         Result scan = run("-t", "scan", input.toString());
         assertEquals(0, scan.status());
         assertEquals(1, run("-t", "parse", input.toString()).status());

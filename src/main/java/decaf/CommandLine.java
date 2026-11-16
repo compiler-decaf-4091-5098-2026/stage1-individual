@@ -2,7 +2,6 @@ package decaf;
 
 import java.nio.file.Path;
 
-/** Options available in stage 1. Later compilation targets are intentionally rejected. */
 public record CommandLine(String target, Path input, Path output, boolean debug, boolean help) {
     public static final String USAGE = """
             Usage: ./run.sh [options] <file>
