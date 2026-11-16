@@ -1,0 +1,10 @@
+// Accepted in stage 1. These semantic errors belong to stage 2.
+void helper() {
+    bool ready;
+    int repeated, repeated, empty[0];
+    missing = true + 1;
+    ready = 10;
+    unknown("string", empty);
+    break;
+    return 123;
+}

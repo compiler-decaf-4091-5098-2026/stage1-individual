@@ -1,0 +1,24 @@
+import printf;
+
+int add(int left, int right) {
+    return left + right;
+}
+
+long widen(int value) {
+    return long(value);
+}
+
+bool positive(int value) {
+    return value > 0;
+}
+
+void printValue(int value) {
+    printf("value=%d\n", value);
+    return;
+}
+
+void main() {
+    int result;
+    result = add(1, add(2, 3));
+    printValue(result);
+}

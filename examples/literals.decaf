@@ -1,0 +1,20 @@
+import printf;
+
+/* Comments may span
+   multiple lines. */
+void main() {
+    int number, character;
+    long wide;
+    number = 0xAf + 0012;
+    wide = 123L + 0xFFL;
+    character = 'A';
+    character = '\n';
+    character = '\'';
+    character = '\"';
+    character = '\\';
+    character = '\t';
+    character = '\r';
+    character = '\f';
+    printf("escapes: \" \' \\ \t \n \r \f", number);
+    // A line comment at the end of the function.
+}

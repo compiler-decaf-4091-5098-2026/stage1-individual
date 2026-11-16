@@ -1,0 +1,13 @@
+int global[0x10], count;
+long totals[4];
+bool flags[4];
+
+void main() {
+    int values[8], i;
+    i = 0;
+    values[i] = len(global);
+    values[i + 1] += 2;
+    global[0]++;
+    totals[0] = long(values[i]) + 0xFFL;
+    count = int(totals[0]);
+}

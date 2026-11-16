@@ -1,0 +1,21 @@
+void main() {
+    int i, total, values[10];
+    bool done;
+    total = 0;
+    done = false;
+    for (i = 0; i < len(values); i++) {
+        if (i == 2) {
+            continue;
+        } else {
+            total += i;
+        }
+        if (total > 20) {
+            break;
+        }
+        values[i] = total;
+    }
+    while (!done) {
+        total--;
+        done = total <= 0;
+    }
+}

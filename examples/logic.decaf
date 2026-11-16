@@ -1,0 +1,5 @@
+void main() {
+    bool ready;
+    ready = true || false && !false;
+    ready = !(1 < 2) || 3 == 4 && true;
+}
